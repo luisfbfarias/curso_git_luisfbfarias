@@ -1,4 +1,6 @@
+import datetime from datetime
 saldo = 0
+extratos=[]
 while True:
     opcao = input("\n1. Depósito. \n2. Saque. \n3. Extrato. \n4. Sair\nEscolha uma opção: ")
     if opcao == '1':
@@ -10,6 +12,14 @@ while True:
             print('O valor do depósito deve ser maior que zero.')
     elif opcao == '2':
         valor_saque = float(input("Digite o valor do saque: "))
+        saldo-= valor_saque
+        extratos.append({
+            "tipo": "Saque",
+            "valor": valor_saque,
+            "horario": datetime.now().strftime('%H:%M:%S'),
+            "data":datetime.now().strftime('%Y-%m-%d')
+        })
+        
         if valor_saque <= saldo:
             print(f"Saque no valor de R${valor_saque:.2f} foi realizado com sucesso.")
         else:
